@@ -1,0 +1,30 @@
+   int minMutation(string startGene, string endGene, vector<string>& bank){ 
+   
+   unordered_set<string>visited;
+   visited.insert(startGene);
+   queue<string>q;
+   q.push(startGene);
+   int count=0;
+   while(!q.empty()){
+      int n=q.size();
+      for(int i=0;i<n;i++){
+      string a=q.front();
+      q.pop();
+      if(a==endGene){return count;}
+      for(char c:"ACGT"){
+        for(int j=0;j<a.size();j++){
+        string b=a;
+        b[j]=c;
+        if(visited.find(b)==visited.end() && 
+    find(bank.begin(),bank.end(),b)!=bank.end()){
+       q.push(b);
+       visited.insert(b);
+            }
+            }
+       }
+       
+       }
+       count++;
+       }
+       return -1;
+    }
